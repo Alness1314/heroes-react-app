@@ -1,0 +1,5 @@
+export * from './NintendoPage'
+export * from './PlayStationPage'
+export * from './XboxPage'
+export * from './HeroPage'
+export * from './SearchPage'
