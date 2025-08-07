@@ -1,16 +1,18 @@
 import icon from "../../assets/react.svg";
 import { NavLink, useNavigate } from "react-router";
+import { AuthContext } from "../../auth/context/AuthContext";
+import { useContext } from "react";
 
 export const Navbar = () => {
-
+  const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const onLogout = () => {
-    navigate('/login', {
-      replace: true
+    logout();
+    navigate("/login", {
+      replace: true,
     });
-  } 
-
+  };
 
   return (
     <nav className="bg-white/70 border-b border-neutral-800/70 dark:bg-zinc-950/50 shadow-2xl h-20 px-8 flex items-center justify-between">
@@ -60,11 +62,31 @@ export const Navbar = () => {
             Xbox
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to="/search"
+            className={({ isActive }) =>
+              `py-2 px-3 text-blue-700 dark:text-white ${
+                isActive ? "underline" : ""
+              }`
+            }
+          >
+            Busqueda
+          </NavLink>
+        </li>
+        <li>
+          <button
+            type="button"
+            className="inline-flex items-center font-medium justify-center px-4 py-2 text-sm text-blue-700  dark:text-blue-500 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+          >
+            {user?.name ?? "Usuario"}
+          </button>
+        </li>
         <li className="flex items-center">
           <button
             type="button"
-            className="py-2 px-3 text-blue-700 dark:text-white bg-transparent border border-blue-700 rounded hover:bg-blue-100 dark:hover:bg-zinc-800"
-          onClick={onLogout}
+            className="py-2 px-3 text-gray-900 dark:text-white bg-transparent border border-blue-700 rounded hover:bg-blue-100 dark:hover:bg-zinc-800"
+            onClick={onLogout}
           >
             Logout
           </button>

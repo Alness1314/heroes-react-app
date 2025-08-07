@@ -1,13 +1,18 @@
 import { useNavigate } from "react-router";
 import BackgroundImg from "../../assets/header-bg.jpg";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 export const LoginPage = () => {
-
+  const {login} = useContext(AuthContext)
   const navigate = useNavigate()
 
 
   const onLogin = () => {
-    navigate('/', {
+    const lastPath = localStorage.getItem('lastPath') || '/'
+    login('alness1213@gmail.com');
+    console.log('path: '+ lastPath)
+    navigate(lastPath, {
       replace: true
     })
   }
@@ -25,10 +30,10 @@ export const LoginPage = () => {
       {/* Botón para cambiar entre modo claro y oscuro */}
 
       <div className="container mx-auto h-screen grid place-items-center">
-        <div className="w-full max-w-sm p-4 bg-zinc-100/75 border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 dark:bg-zinc-800/75 dark:border-zinc-700">
+        <div className="w-full max-w-sm p-4 bg-zinc-100/70 border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 dark:bg-zinc-800/70 dark:border-zinc-700">
           <form className="space-y-6" action="#">
             <h5 className="text-xl font-medium text-gray-900 dark:text-white">
-              Sign in to our platform
+              Sign in
             </h5>
             <div>
               <label
