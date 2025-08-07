@@ -29,7 +29,7 @@ export const HeroCard = ({ id, name, nickname, notes, image }) => {
           to={`/hero/${id}`}
           className="inline-flex font-medium items-center text-blue-600 hover:underline"
         >
-          More info...
+          Mas información...
         </Link>
       </div>
     </div>
